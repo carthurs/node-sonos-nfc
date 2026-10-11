@@ -62,6 +62,13 @@ room ready 13:38:41.162, then the ACS reader attached. The planned timeout sent
 SIGINT and both children exited; port 5005 was closed. Thus this diagnostic
 npm/concurrently path took about 85 seconds to room readiness, of which about
 46 seconds preceded the Node readiness gate. PM2 bypasses those wrappers.
+With final PM2 startup, NFC gate started 13:41:24.515 UTC, the room was ready
+45.789 seconds later, and the reader attached at 13:42:16. A targeted NFC
+SIGTERM recovery test changed PID 3923 to 3992 while API PID 3922 stayed alive;
+the readiness check took 1.164 seconds and the reader reattached. The original
+TV configuration hash was restored exactly and no final TV playback was sent.
+The saved PM2 dump contains only the API and NFC apps, both online; the existing
+pm2-chris.service is enabled. Reboot validation still requires user assistance.
 
 Formatting no longer runs `git add -A`; private settings and vendor archives
 are excluded from Prettier. Always stage explicit files and inspect the index.
@@ -93,6 +100,11 @@ AWS SDK 2.1046.0 required 15.8 seconds and 9.3 MB RSS to load in isolation on
 this Pi. The API now loads it only for an uncached Polly TTS request. A measured
 direct warm API restart reached its listener in about 42.5 seconds; this is not
 a cold boot result. Avoid launching repeated npm wrappers on 176 MiB RAM.
+A quiet 20.036-second measurement after recovery showed API and NFC each using
+zero measured CPU ticks, PM2 about 0.15% CPU. RSS: API 42.7 MiB, NFC 36.5 MiB,
+PM2 18.0 MiB. Summed RSS counts shared pages more than once. System available
+memory was 65 MiB; swap usage 28 MiB. No valid whole-appliance idle baseline
+exists, so no idle before/after improvement is claimed.
 
 Existing boot: kernel 7.161 s + userspace 70.840 s = 78.001 s. PM2 unit 42.656 s,
 dhcpcd 30.915 s, random seed 18.928 s, SD device 11.874 s overlap, not additive.
