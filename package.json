@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start-all": "concurrently --kill-others \"npm start\" \"npm explore sonos-http-api -- npm start\"",
+    "start-all": "concurrently --kill-others \"node scripts/start-nfc.js\" \"cd node_modules/sonos-http-api && node server.js\"",
     "start": "node index.js",
     "prepare": "husky install",
-    "format": "prettier --write . && git add -A ."
+    "format": "prettier --write ."
   },
   "author": "Ryan Olf",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "nfc-pcsc": "^0.8.0",
     "nfccard-tool": "^0.1.1",
     "node-fetch": "^2.6.1",
-    "sonos-http-api": "file:vendor/sonos-http-api-1.6.9-node12.tgz"
+    "sonos-http-api": "file:vendor/sonos-http-api-1.6.9-node12-b655cf0.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

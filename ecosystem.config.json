@@ -1,0 +1,30 @@
+{
+  "apps": [
+    {
+      "name": "sonos-api",
+      "cwd": "/home/chris/node-sonos-nfc/node_modules/sonos-http-api",
+      "script": "/usr/bin/node",
+      "args": ["server.js"],
+      "interpreter": "none",
+      "autorestart": true,
+      "restart_delay": 5000,
+      "min_uptime": "30s",
+      "max_restarts": 10,
+      "kill_timeout": 5000,
+      "time": true
+    },
+    {
+      "name": "sonos-nfc",
+      "cwd": "/home/chris/node-sonos-nfc",
+      "script": "/usr/bin/node",
+      "args": ["scripts/start-nfc.js"],
+      "interpreter": "none",
+      "autorestart": true,
+      "restart_delay": 5000,
+      "min_uptime": "30s",
+      "max_restarts": 10,
+      "kill_timeout": 5000,
+      "time": true
+    }
+  ]
+}
