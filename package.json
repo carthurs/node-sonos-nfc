@@ -18,7 +18,7 @@
     "nfc-pcsc": "^0.8.0",
     "nfccard-tool": "^0.1.1",
     "node-fetch": "^2.6.1",
-    "sonos-http-api": "jishi/node-sonos-http-api"
+    "sonos-http-api": "file:vendor/sonos-http-api-1.6.9-node12.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
