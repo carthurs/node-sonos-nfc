@@ -68,7 +68,18 @@ SIGTERM recovery test changed PID 3923 to 3992 while API PID 3922 stayed alive;
 the readiness check took 1.164 seconds and the reader reattached. The original
 TV configuration hash was restored exactly and no final TV playback was sent.
 The saved PM2 dump contains only the API and NFC apps, both online; the existing
-pm2-chris.service is enabled. Reboot validation still requires user assistance.
+pm2-chris.service is enabled. A user-initiated reboot subsequently passed:
+both direct Node processes were restored automatically, with zero restarts.
+Boot timings (seconds since kernel boot): USB 6.590; PM2 unit starts 32.258;
+Wi-Fi carrier 45.931; DHCP 55.377; PM2 daemon ready 71.339; two Node processes
+restored 73.464 / 73.866; PM2 unit active 83.112; NFC gate begins 96.90;
+API listener about 128.75; Sonos room ready 146.63; reader attached about 151.5.
+Systemd reports 5.725 s kernel + 78.540 s userspace = 84.266 s. Blame durations
+are PM2 50.854 s, dhcpcd 30.082 s, random seed 17.788 s, SD device 10.551 s;
+these overlap. The gate waited 49.734 s. The TV state endpoint returned 200,
+with the original configuration unchanged and no TV playback requested.
+This is reboot-to-readiness, not a controlled cold power-on result. The reported
+five-minute original appliance startup was not independently established.
 
 Formatting no longer runs `git add -A`; private settings and vendor archives
 are excluded from Prettier. Always stage explicit files and inspect the index.
